@@ -1,11 +1,11 @@
-package pl.coderslab.LabNotebook.entity;
+package pl.coderslab.labnotebook.entity;
 
 import lombok.Data;
 import org.hibernate.validator.constraints.Range;
+import pl.coderslab.labnotebook.user.User;
 
 import javax.persistence.*;
 import java.util.Date;
-import java.util.List;
 
 @Entity
 @Table(name = Protocol.TABLE_NAME)
@@ -19,10 +19,13 @@ public class Protocol {
     private String name;
     @Column
     private String description;
-    @Column(name = "last_modification")
-    private Date lastModification;
+    @Column(name = "last_modification_date")
+    private Date lastModificationDate;
     @Column(name = "is_finished")
     @Range(min = 0, max = 1)
     private byte isFinished;
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 
 }

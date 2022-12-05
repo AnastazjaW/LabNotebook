@@ -1,6 +1,7 @@
-package pl.coderslab.LabNotebook.entity;
+package pl.coderslab.labnotebook.entity;
 
 import lombok.Data;
+import pl.coderslab.labnotebook.user.User;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -17,9 +18,12 @@ public class Report {
     private String name;
     @Column
     private String description;
-    @Column(name = "last_modification")
-    private Date lastModification;
+    @Column(name = "last_modification_date")
+    private Date lastModificationDate;
     @OneToOne
     @JoinColumn(name = "experiment_id")
     private Experiment experiment;
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 }

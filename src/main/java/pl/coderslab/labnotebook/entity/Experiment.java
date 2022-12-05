@@ -1,4 +1,4 @@
-package pl.coderslab.LabNotebook.entity;
+package pl.coderslab.labnotebook.entity;
 
 import lombok.Data;
 import org.hibernate.validator.constraints.Range;
@@ -18,8 +18,8 @@ public class Experiment {
     private String name;
     @Column
     private String description;
-    @Column(name = "last_modification")
-    private Date lastModification;
+    @Column(name = "last_modification_date")
+    private Date lastModificationDate;
     @Column(name = "is_finished")
     @Range(min = 0, max = 1)
     private byte isFinished;

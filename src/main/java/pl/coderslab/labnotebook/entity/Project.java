@@ -1,8 +1,11 @@
-package pl.coderslab.LabNotebook.entity;
+package pl.coderslab.labnotebook.entity;
 
 import lombok.Data;
+import pl.coderslab.labnotebook.user.User;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -16,6 +19,7 @@ public class Project {
     private long id;
 
     @Column
+    @NotEmpty
     private String name;
     @ManyToMany
     @JoinTable(name = "users_projects",
@@ -23,9 +27,10 @@ public class Project {
             inverseJoinColumns = @JoinColumn(name = "user_id"))
     private List<User> users;
     @Column
+    @NotEmpty
     private String description;
     @Column(name = "start_date")
-    private Date startDate;
+    private LocalDateTime startDate;
     @Column(name = "finish_date")
     private Date finishDate;
 
