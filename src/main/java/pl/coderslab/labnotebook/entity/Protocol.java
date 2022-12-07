@@ -2,7 +2,7 @@ package pl.coderslab.labnotebook.entity;
 
 import lombok.Data;
 import org.hibernate.validator.constraints.Range;
-import pl.coderslab.labnotebook.user.User;
+import pl.coderslab.labnotebook.user.entity.User;
 
 import javax.persistence.*;
 import java.util.Date;

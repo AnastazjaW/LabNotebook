@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
   User: nasta
-  Date: 12/3/2022
-  Time: 1:05 PM
+  Date: 12/5/2022
+  Time: 8:41 PM
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -12,7 +12,7 @@
     <title>Registration</title>
 </head>
 <body>
-<h1>Create your LabNotebook</h1>
+<h1>Registration</h1>
 <form:form method="post" modelAttribute="user">
     First name: <form:input path="firstName"/><br>
     <form:errors path="firstName"/><br>
@@ -24,8 +24,10 @@
     <form:errors path="affiliation"/>
     Email: <form:input path="email"/><br>
     <form:errors path="email"/>
-    Password: <form:input path="password"/><br>
+    Password: <form:password path="password"/><br>
     <form:errors path="password"/>
+    Confirm password: <form:password path="confirmPassword"/>
+    <form:errors path="confirmPassword"/>
     <input type="submit" value="Register"/>
 </form:form>
 </body>

@@ -1,7 +1,7 @@
 package pl.coderslab.labnotebook.entity;
 
 import lombok.Data;
-import pl.coderslab.labnotebook.user.User;
+import pl.coderslab.labnotebook.user.entity.User;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;

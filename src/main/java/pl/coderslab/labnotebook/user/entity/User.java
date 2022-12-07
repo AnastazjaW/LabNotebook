@@ -1,4 +1,4 @@
-package pl.coderslab.labnotebook.user;
+package pl.coderslab.labnotebook.user.entity;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -18,28 +18,28 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @NotEmpty
+
     @Column(name = "first_name")
     private String firstName;
 
-    @NotEmpty
+
     @Column(name = "last_name")
     private String lastName;
 
 
     @Column
-    @NotEmpty
+
     private String degree;
 
-    @NotEmpty
+
     @Column
     private String affiliation;
 
-    @NotEmpty
+
     @Column
     private String email;
 
-    @NotEmpty
+
     @Column
     private String password;
 

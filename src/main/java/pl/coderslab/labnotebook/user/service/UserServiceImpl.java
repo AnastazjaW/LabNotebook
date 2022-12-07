@@ -1,4 +1,4 @@
-package pl.coderslab.labnotebook.user;
+package pl.coderslab.labnotebook.user.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +8,9 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import pl.coderslab.labnotebook.entity.Role;
+import pl.coderslab.labnotebook.user.repository.UserRepository;
+import pl.coderslab.labnotebook.user.dto.UserRegisterDTO;
+import pl.coderslab.labnotebook.user.entity.User;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -25,9 +28,9 @@ public class UserServiceImpl implements UserService{
 
 
     @Override
-    public User save(UserRegistrationDTO userRegistrationDTO) {
-        User user = new User(userRegistrationDTO.getFirstName(), userRegistrationDTO.getLastName(), userRegistrationDTO.getDegree(),
-                userRegistrationDTO.getAffiliation(), userRegistrationDTO.getEmail(), bCryptPasswordEncoder.encode(userRegistrationDTO.getPassword()),
+    public User save(UserRegisterDTO userRegisterDTO) {
+        User user = new User(userRegisterDTO.getFirstName(), userRegisterDTO.getLastName(), userRegisterDTO.getDegree(),
+                userRegisterDTO.getAffiliation(), userRegisterDTO.getEmail(), bCryptPasswordEncoder.encode(userRegisterDTO.getPassword()),
                new HashSet<>(List.of(new Role("ROLE_USER"))));
         return userRepository.save(user);
     }
