@@ -1,5 +1,6 @@
 package pl.coderslab.labnotebook.user.validation;
 
+import org.springframework.stereotype.Component;
 import pl.coderslab.labnotebook.user.validation.adnotations.Password;
 
 import javax.validation.ConstraintValidator;

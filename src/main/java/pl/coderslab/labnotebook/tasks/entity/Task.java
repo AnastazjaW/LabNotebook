@@ -1,9 +1,12 @@
-package pl.coderslab.labnotebook.entity;
+package pl.coderslab.labnotebook.tasks.entity;
 
 import lombok.Data;
 import org.hibernate.validator.constraints.Range;
+import pl.coderslab.labnotebook.project.entity.Project;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 import java.util.Date;
 
 
@@ -16,8 +19,12 @@ public class Task {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     @Column
+    @NotEmpty
+    @Size(min = 2)
     private String name;
     @Column
+    @NotEmpty
+    @Size(min = 2)
     private String description;
     @Column(name = "last_modification_date")
     private Date lastModificationDate;
