@@ -3,9 +3,11 @@ package pl.coderslab.labnotebook.user.entity;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import pl.coderslab.labnotebook.entity.Role;
+import pl.coderslab.labnotebook.project.entity.Project;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -19,6 +21,7 @@ public class User {
     private long id;
 
 
+
     @Column(name = "first_name")
     private String firstName;
 
@@ -28,7 +31,6 @@ public class User {
 
 
     @Column
-
     private String degree;
 
 
@@ -44,11 +46,10 @@ public class User {
     private String password;
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinTable(name = "user_role"
+    @JoinTable(name = "users_roles"
             , joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles;
-
 
     public User(String firstName, String lastName, String degree, String affiliation, String email, String password, Set<Role> roles) {
         this.firstName = firstName;
@@ -59,5 +60,6 @@ public class User {
         this.password = password;
         this.roles = roles;
     }
+    public String getFullName() { return firstName + " " + lastName + ", " + degree; }
 
 }

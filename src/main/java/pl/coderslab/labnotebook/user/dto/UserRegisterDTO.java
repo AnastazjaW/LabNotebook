@@ -5,33 +5,29 @@ import pl.coderslab.labnotebook.user.validation.adnotations.ConfirmPassword;
 import pl.coderslab.labnotebook.user.validation.adnotations.Password;
 import pl.coderslab.labnotebook.user.validation.adnotations.UniqueEmail;
 
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 
 @Data
 @ConfirmPassword
 @UniqueEmail
 public class UserRegisterDTO {
-    @NotEmpty
+    @NotBlank
     @Size(min = 2, max = 30)
     private String firstName;
-    @NotEmpty
+    @NotBlank
     @Size(min = 2, max = 30)
     private String lastName;
-    @NotEmpty
+    @NotBlank
     private String degree;
-    @NotEmpty
+    @NotBlank
     @Size(min = 2, max = 30)
     private String affiliation;
-    @NotEmpty
+    @NotBlank
     @Email
     private String email;
-    @NotEmpty
+    @NotBlank
     @Password
     private String password;
-    @NotEmpty
+    @NotBlank
     private String confirmPassword;
-
-
 }

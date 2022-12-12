@@ -1,10 +1,12 @@
-package pl.coderslab.labnotebook.entity;
+package pl.coderslab.labnotebook.project.entity;
 
 import lombok.Data;
+import org.springframework.stereotype.Service;
 import pl.coderslab.labnotebook.user.entity.User;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
@@ -20,6 +22,7 @@ public class Project {
 
     @Column
     @NotEmpty
+    @Size(min = 2)
     private String name;
     @ManyToMany
     @JoinTable(name = "users_projects",
@@ -28,6 +31,7 @@ public class Project {
     private List<User> users;
     @Column
     @NotEmpty
+    @Size(min = 2)
     private String description;
     @Column(name = "start_date")
     private LocalDateTime startDate;

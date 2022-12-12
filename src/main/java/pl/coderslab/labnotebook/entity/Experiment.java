@@ -2,6 +2,7 @@ package pl.coderslab.labnotebook.entity;
 
 import lombok.Data;
 import org.hibernate.validator.constraints.Range;
+import pl.coderslab.labnotebook.tasks.entity.Task;
 
 import javax.persistence.*;
 import java.util.Date;

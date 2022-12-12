@@ -9,8 +9,8 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-@Constraint(validatedBy = {ConfirmPasswordValidator.class})
-@Target({ElementType.TYPE, ElementType.FIELD})
+@Constraint(validatedBy = ConfirmPasswordValidator.class)
+@Target({ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
 public @interface ConfirmPassword {
     String message() default "{invalid.password.confirm-password}";

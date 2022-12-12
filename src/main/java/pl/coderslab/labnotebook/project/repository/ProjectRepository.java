@@ -1,10 +1,10 @@
-package pl.coderslab.labnotebook.repository;
+package pl.coderslab.labnotebook.project.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
-import pl.coderslab.labnotebook.entity.Project;
+import pl.coderslab.labnotebook.project.entity.Project;
 
 import java.util.List;
 @Repository

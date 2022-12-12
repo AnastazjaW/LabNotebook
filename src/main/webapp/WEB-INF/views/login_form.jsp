@@ -8,6 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <title>Sign up</title>
@@ -16,9 +17,9 @@
 <h1>Sign up</h1>
 <form method="post" action="<c:url value="/login"/>">
     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-        <label for="email"></label>
+        <label for="email">Email: </label>
         <input type="text" name="username" id="email" class="form-control" maxlength="60"/>
-        <label for="password"></label>
+        <label for="password">Password: </label>
         <input type="password" name="password" id="password" class="form-control"/>
     <input type="submit"/>
 </form>
