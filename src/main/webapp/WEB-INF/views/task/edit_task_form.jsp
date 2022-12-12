@@ -9,17 +9,15 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <html>
 <head>
-    <title>Edit project</title>
+    <title>Edit task</title>
 </head>
 <body>
-<h1>Edit project</h1>
-<form:form method="post" modelAttribute="project">
+<h1>Edit task</h1>
+<form:form method="post" modelAttribute="taskToEdit">
     Title: <form:input path="name"/><br>
     <form:errors path="name"/><br>
     Description: <form:input path="description"/><br>
     <form:errors path="description"/>
-    Add people to project (press Ctrl for multiple adds and to delete person from project): <form:select path="users" multiple="true" items="${users}" itemValue="id" itemLabel="fullName"/><br>
-    <form:errors path="users"/>
     <input type="submit" value="Save"/>
 </form:form>
 </body>

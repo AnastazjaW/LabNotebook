@@ -1,17 +1,19 @@
 package pl.coderslab.labnotebook.tasks.service;
 
 import lombok.RequiredArgsConstructor;
+import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.coderslab.labnotebook.tasks.entity.Task;
 import pl.coderslab.labnotebook.tasks.repository.TaskRepository;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 @Service
 @RequiredArgsConstructor
 public class TaskService {
-    TaskRepository taskRepository;
+    private final TaskRepository taskRepository;
     public Optional<Task> findById(long id) {
         return taskRepository.findById(id);
     }
@@ -21,6 +23,8 @@ public class TaskService {
     }
 
     public void save(Task task) {
+        LocalDateTime startDate = LocalDateTime.now();
+        task.setLastModificationDate(startDate);
         taskRepository.save(task);
     }
 
@@ -32,5 +36,13 @@ public class TaskService {
     }
     public List<Task> findTasksByProjectIdSortByLastModificationDate(long projectId) {
         return taskRepository.findTasksByProjectIdSortByLastModificationDate(projectId);
+    }
+    private void addProjectToTask(Task task) {
+        Hibernate.initialize(task.getProject());
+    }
+    public Task findWithProjectById(long id) {
+        Task task = taskRepository.getOne(id);
+        addProjectToTask(task);
+        return task;
     }
 }

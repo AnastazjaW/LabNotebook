@@ -16,7 +16,7 @@ public class SecurityConfig {
         http.authorizeRequests()
                 .antMatchers("/home", "/register").permitAll()
                 .antMatchers("/project/**").authenticated()
-                .and().formLogin()
+                .and().formLogin().defaultSuccessUrl("/project/list")
                 .and().logout().permitAll().invalidateHttpSession(true).clearAuthentication(true);
 //                .and().exceptionHandling().accessDeniedPage("/403");
 

@@ -13,18 +13,17 @@
 </head>
 <body>
 <h1>Tasks</h1>
-<a href="<c:url value="${pageContext.request.contextPath}/task/add"/>">New task</a><br><br>
+<a href="<c:url value="${pageContext.request.contextPath}/project/${projectId}/task/add"/>">New task</a><br><br>
 <table>
     <c:choose>
-        <c:when test="${!(taskList == null)}">
+        <c:when test="${not empty taskList}">
             <c:forEach items="${taskList}" var="task">
                 <tr>
-                    <td>Project title: ${task.name}<br>
-                        Start date: ${task.startDate}<br>
-                        Finish date: ${task.finishDate}<br>
-                        <a href="<c:url value="${pageContext.request.contextPath}/project/delete/${task.id}"/>"
+                    <td>Task: ${task.name}<br>
+                        Last modification: ${task.lastModificationDate}<br>
+                        <a href="<c:url value="${pageContext.request.contextPath}/project/${projectId}/task/delete/${task.id}"/>"
                            class="btn btn-danger rounded-0 text-light m-1" onclick="return confirm('Are you sure?')">Delete</a>
-                        <a href="<c:url value="${pageContext.request.contextPath}/project/edit/${task.id}"/>">Edit</a>
+                        <a href="<c:url value="${pageContext.request.contextPath}/project/${projectId}/task/edit/${task.id}"/>">Edit</a>
                         <a href="<c:url value="${pageContext.request.contextPath}/task/list/${task.id}"/>">Show
                             details</a>
                         <br>
