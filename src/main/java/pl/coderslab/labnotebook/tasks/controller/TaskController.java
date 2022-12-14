@@ -9,6 +9,8 @@ import pl.coderslab.labnotebook.project.entity.Project;
 import pl.coderslab.labnotebook.project.service.ProjectService;
 import pl.coderslab.labnotebook.tasks.entity.Task;
 import pl.coderslab.labnotebook.tasks.service.TaskService;
+import pl.coderslab.labnotebook.user.entity.User;
+import pl.coderslab.labnotebook.user.service.UserService;
 
 import javax.swing.*;
 import javax.validation.Valid;
@@ -20,11 +22,16 @@ import java.util.List;
 public class TaskController {
     private final TaskService taskService;
     private final ProjectService projectService;
+    private final UserService userService;
+    @ModelAttribute("users")
+    public List<User> users() {
+        return userService.findAllUsersWithoutProjectCreator();
+    }
 
     @GetMapping("/tasks")
     public String findProjectTasks(@PathVariable long projectID, Model model) {
         List<Task> projectTasks = taskService.findTasksByProjectIdSortByLastModificationDate(projectID);
-        model.addAttribute("projectId", projectID);
+        model.addAttribute("project", projectService.findById(projectID).get());
         model.addAttribute("taskList", projectTasks);
         return "task/task_list";
     }
@@ -40,7 +47,7 @@ public class TaskController {
         if (result.hasErrors()) {
             return "task/create_task_form";
         }
-        task.setProject(projectService.findById(projectID).get());
+        task.setProject(projectService.findWithUsersById(projectID));
         taskService.save(task);
         return "redirect:/project/{projectID}/tasks";
     }
@@ -53,7 +60,7 @@ public class TaskController {
 
     @GetMapping("task/edit/{taskId}")
     public String editTask(@PathVariable long taskId, Model model) {
-        model.addAttribute("taskToEdit", taskService.findWithProjectById(taskId));
+        model.addAttribute("taskToEdit", taskService.findById(taskId).get());
         return "task/edit_task_form";
     }
 
@@ -64,8 +71,15 @@ public class TaskController {
             return "task/edit_task_form";
         }
         task.setProject(projectService.findWithUsersById(projectID));
-//        task.setId(taskId);
+        task.setId(taskId);
         taskService.save(task);
         return "redirect:/project/{projectID}/tasks";
+    }
+
+    @RequestMapping("/task/finish/{taskId}")
+    public String markTaskAsFinished(@PathVariable long taskId) {
+        taskService.markTaskAsFinished(taskId);
+        return "redirect:/project/{projectID}/tasks";
+
     }
 }

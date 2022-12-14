@@ -23,8 +23,8 @@ public class TaskService {
     }
 
     public void save(Task task) {
-        LocalDateTime startDate = LocalDateTime.now();
-        task.setLastModificationDate(startDate);
+        LocalDateTime date = LocalDateTime.now();
+        task.setLastModificationDate(date);
         taskRepository.save(task);
     }
 
@@ -41,8 +41,13 @@ public class TaskService {
         Hibernate.initialize(task.getProject());
     }
     public Task findWithProjectById(long id) {
-        Task task = taskRepository.getOne(id);
+        Task task = taskRepository.getById(id);
         addProjectToTask(task);
         return task;
+    }
+    public void markTaskAsFinished(long id) {
+        Task task = findWithProjectById(id);
+        task.setIsFinished((byte) 1);
+        save(task);
     }
 }

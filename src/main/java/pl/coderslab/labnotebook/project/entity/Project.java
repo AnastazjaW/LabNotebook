@@ -36,7 +36,7 @@ public class Project {
     @Column(name = "start_date")
     private LocalDateTime startDate;
     @Column(name = "finish_date")
-    private Date finishDate;
+    private LocalDateTime finishDate;
 
 
 

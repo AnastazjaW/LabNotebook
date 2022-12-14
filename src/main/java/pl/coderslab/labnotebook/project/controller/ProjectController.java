@@ -70,4 +70,10 @@ public class ProjectController {
         return "redirect:/project/list";
     }
 
+    @RequestMapping("/finish/{id}")
+    public String addFinishDateToProject(@PathVariable long id) {
+        projectService.addFinishDateToProject(id);
+        return "redirect:/project/list";
+    }
+
 }

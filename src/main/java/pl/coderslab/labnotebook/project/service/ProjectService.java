@@ -8,6 +8,7 @@ import pl.coderslab.labnotebook.project.repository.ProjectRepository;
 import pl.coderslab.labnotebook.user.service.UserService;
 
 import javax.transaction.Transactional;
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
@@ -48,5 +49,11 @@ public class ProjectService {
         Project project = projectRepository.getOne(id);
         addUsersToProject(project);
         return project;
+    }
+
+    public void addFinishDateToProject(long id) {
+        Project project = projectRepository.getOne(id);
+        LocalDateTime finishDate = LocalDateTime.now();
+        project.setFinishDate(finishDate);
     }
 }

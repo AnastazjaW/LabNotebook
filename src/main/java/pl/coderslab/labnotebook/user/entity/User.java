@@ -2,12 +2,9 @@ package pl.coderslab.labnotebook.user.entity;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import pl.coderslab.labnotebook.entity.Role;
-import pl.coderslab.labnotebook.project.entity.Project;
+import pl.coderslab.labnotebook.role.entity.Role;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
-import java.util.List;
 import java.util.Set;
 
 @Entity

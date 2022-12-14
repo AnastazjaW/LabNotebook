@@ -10,8 +10,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
-import pl.coderslab.labnotebook.entity.Role;
-import pl.coderslab.labnotebook.repository.RoleRepository;
+import pl.coderslab.labnotebook.role.entity.Role;
+import pl.coderslab.labnotebook.role.repository.RoleRepository;
 import pl.coderslab.labnotebook.user.repository.UserRepository;
 import pl.coderslab.labnotebook.user.dto.UserRegisterDTO;
 import pl.coderslab.labnotebook.user.entity.User;
@@ -30,7 +30,7 @@ public class UserService implements UserDetailsService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User user = userRepository.findUserByEmail(username);
         if (user == null) {
-            throw new UsernameNotFoundException("Invalid username or password");
+            throw new UsernameNotFoundException("Username not found");
         }
         return new org.springframework.security.core.userdetails.User(user.getEmail(), user.getPassword(), mapRolesToAuthorities(user.getRoles()));
     }
@@ -75,4 +75,5 @@ public class UserService implements UserDetailsService {
     public long getAuthenticatedUserId() {
         return this.getAuthenticatedUser().getId();
     }
+
 }

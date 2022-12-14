@@ -12,8 +12,18 @@
     <title>Tasks</title>
 </head>
 <body>
-<h1>Tasks</h1>
-<a href="<c:url value="${pageContext.request.contextPath}/project/${projectId}/task/add"/>">New task</a><br><br>
+<h3>Project: ${project.name}</h3>
+<h4>Description: ${project.description}</h4>
+<h4>Participants: </h4>
+<table>
+    <c:forEach items="${users}" var="user">
+        <tr>
+            <td>${user.firstName} ${user.lastName}, ${user.degree}  ${user.affiliation}</td>
+        </tr>
+    </c:forEach>
+</table>
+<h3>Tasks</h3>
+<a href="<c:url value="${pageContext.request.contextPath}/project/${project.id}/task/add"/>">New task</a><br><br>
 <table>
     <c:choose>
         <c:when test="${not empty taskList}">
@@ -21,10 +31,20 @@
                 <tr>
                     <td>Task: ${task.name}<br>
                         Last modification: ${task.lastModificationDate}<br>
-                        <a href="<c:url value="${pageContext.request.contextPath}/project/${projectId}/task/delete/${task.id}"/>"
+                        <c:choose>
+                            <c:when test="${task.isFinished == 0}">
+                                <a href="<c:url value="${pageContext.request.contextPath}/project/${project.id}/task/finish/${task.id}"/>"
+                                   class="btn btn-danger rounded-0 text-light m-1"
+                                   onclick="return confirm('Are you sure?')">Mark as finished</a>
+                            </c:when>
+                            <c:otherwise>
+                                Finished
+                            </c:otherwise>
+                        </c:choose>
+                        <a href="<c:url value="${pageContext.request.contextPath}/project/${project.id}/task/delete/${task.id}"/>"
                            class="btn btn-danger rounded-0 text-light m-1" onclick="return confirm('Are you sure?')">Delete</a>
-                        <a href="<c:url value="${pageContext.request.contextPath}/project/${projectId}/task/edit/${task.id}"/>">Edit</a>
-                        <a href="<c:url value="${pageContext.request.contextPath}/task/list/${task.id}"/>">Show
+                        <a href="<c:url value="${pageContext.request.contextPath}/project/${project.id}/task/edit/${task.id}"/>">Edit</a>
+                        <a href="<c:url value="${pageContext.request.contextPath}/project/${project.id}/task/${task.id}/experiments"/>">Show
                             details</a>
                         <br>
                     </td>

@@ -14,13 +14,10 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/home", "/register").permitAll()
-                .antMatchers("/project/**").authenticated()
-                .and().formLogin().defaultSuccessUrl("/project/list")
+                .antMatchers("/", "/register").permitAll()
+                .anyRequest().authenticated()
+                .and().formLogin().defaultSuccessUrl("/current_tasks")
                 .and().logout().permitAll().invalidateHttpSession(true).clearAuthentication(true);
-//                .and().exceptionHandling().accessDeniedPage("/403");
-
-//                .defaultSuccessUrl("/user/current_tasks");
         return http.build();
     }
 
@@ -29,9 +26,6 @@ public class SecurityConfig {
     public BCryptPasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
-//    @Bean
-//    public UserServiceImpl userService() {
-//        return new UserServiceImpl();
-//    }
+
 
 }
