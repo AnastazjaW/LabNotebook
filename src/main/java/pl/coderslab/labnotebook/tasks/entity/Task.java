@@ -21,11 +21,11 @@ public class Task {
     private long id;
     @Column
     @NotEmpty
-    @Size(min = 2, max = 100)
+    @Size(min = 2, max = 260)
     private String name;
     @Column
     @NotEmpty
-    @Size(min = 2, max = 260)
+    @Size(min = 2, max = 1000)
     private String description;
     @Column(name = "last_modification_date")
     private LocalDateTime lastModificationDate;

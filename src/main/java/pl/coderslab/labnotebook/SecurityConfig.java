@@ -16,8 +16,8 @@ public class SecurityConfig {
         http.authorizeRequests()
                 .antMatchers("/", "/register").permitAll()
                 .anyRequest().authenticated()
-                .and().formLogin().defaultSuccessUrl("/current_tasks")
-                .and().logout().permitAll().invalidateHttpSession(true).clearAuthentication(true);
+                .and().formLogin().defaultSuccessUrl("/last_task")
+                .and().logout().permitAll().invalidateHttpSession(true).clearAuthentication(true).logoutSuccessUrl("/");
         return http.build();
     }
 

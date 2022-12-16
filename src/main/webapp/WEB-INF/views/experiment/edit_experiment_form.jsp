@@ -7,18 +7,18 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<html>
-<head>
-    <title>Edit experiment</title>
-</head>
-<body>
-<h1>Edit experiment</h1>
+<%@ include file="/WEB-INF/views/header/header.jsp" %>
+<div class="mt-4 d-flex flex-column">
+    <div class="d-flex justify-content-center" style="font-size:25px;">Edit experiment</div>
+    <div class="mt-4 d-flex justify-content-center">
 <form:form method="post" modelAttribute="experimentToEdit">
     Title: <form:input path="name"/><br>
     <form:errors path="name"/><br>
-    Description: <form:input path="description"/><br>
+    Description: <form:textarea path="description"/><br>
     <form:errors path="description"/>
-    <input type="submit" value="Save"/>
+    <input type="submit" class="btn btn-outline-info btn-sm" value="Save"/>
 </form:form>
+    </div>
+</div>
 </body>
 </html>

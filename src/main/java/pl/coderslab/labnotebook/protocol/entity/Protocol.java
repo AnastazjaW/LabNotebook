@@ -20,7 +20,7 @@ public class Protocol {
     private long id;
     @Column
     @NotEmpty
-    @Size(min = 2, max = 100)
+    @Size(min = 2, max = 260)
     private String name;
     @Column
     @NotEmpty
@@ -28,9 +28,6 @@ public class Protocol {
     private String description;
     @Column(name = "last_modification_date")
     private LocalDateTime lastModificationDate;
-    @Column(name = "is_finished")
-    @Range(min = 0, max = 1)
-    private byte isFinished;
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;

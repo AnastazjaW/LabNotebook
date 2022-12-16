@@ -1,7 +1,6 @@
-package pl.coderslab.labnotebook.currentTasks;
+package pl.coderslab.labnotebook.lastTask;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.boot.Banner;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,19 +12,19 @@ import java.util.List;
 
 @RequiredArgsConstructor
 @Controller
-public class CurrentTasksController {
+public class LastTaskController {
     private final TaskService taskService;
     private final UserService userService;
 
-    @GetMapping("/current_tasks")
-    public String currentTasks(Model model) {
+    @GetMapping("/last_task")
+    public String lastTasks(Model model) {
         long userId = userService.getAuthenticatedUserId();
-        List<Task> tasks = taskService.findNotFinishedTasksSortByLastModificationDate(userId);
-        for (Task t : tasks) {
-            model.addAttribute("project", t.getProject());
+        Task lastTask = taskService.findNotFinishedTaskByUserIdWithMaxLastModificationDate(userId);
+        model.addAttribute("lastTask", lastTask);
+        if (null != lastTask) {
+            model.addAttribute("project", lastTask.getProject());
         }
-        model.addAttribute("currentTasks", tasks);
-        return "current_tasks";
+        return "last_task";
 
     }
 }

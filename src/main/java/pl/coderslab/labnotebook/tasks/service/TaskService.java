@@ -2,7 +2,6 @@ package pl.coderslab.labnotebook.tasks.service;
 
 import lombok.RequiredArgsConstructor;
 import org.hibernate.Hibernate;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.coderslab.labnotebook.tasks.entity.Task;
 import pl.coderslab.labnotebook.tasks.repository.TaskRepository;
@@ -31,8 +30,8 @@ public class TaskService {
     public void delete(long id) {
         taskRepository.deleteById(id);
     }
-    public List<Task> findNotFinishedTasksSortByLastModificationDate(long userId) {
-        return taskRepository.findNotFinishedTasksByUserIdSortByLastModificationDate(userId);
+    public Task findNotFinishedTaskByUserIdWithMaxLastModificationDate(long userId) {
+        return taskRepository.findNotFinishedTaskByUserIdWithMaxLastModificationDate(userId);
     }
     public List<Task> findTasksByProjectIdSortByLastModificationDate(long projectId) {
         return taskRepository.findTasksByProjectIdSortByLastModificationDate(projectId);
@@ -49,5 +48,8 @@ public class TaskService {
         Task task = findWithProjectById(id);
         task.setIsFinished((byte) 1);
         save(task);
+    }
+    public void updateLastModificationDate(long id) {
+        save(findById(id).get());
     }
 }

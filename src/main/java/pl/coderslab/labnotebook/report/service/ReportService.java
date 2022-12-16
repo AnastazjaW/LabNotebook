@@ -1,34 +1,34 @@
 package pl.coderslab.labnotebook.report.service;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import pl.coderslab.labnotebook.report.entity.Report;
 import pl.coderslab.labnotebook.report.repository.ReportRepository;
 
 import java.util.List;
 import java.util.Optional;
-
+@Service
+@RequiredArgsConstructor
 public class ReportService {
-    ReportRepository reportRepository;
-    @Autowired
-    public void ReportRepository(ReportRepository reportRepository) {
-        this.reportRepository = reportRepository;
-    }
+    private final ReportRepository reportRepository;
+
     public Optional<Report> findById(long id) {
         return reportRepository.findById(id);
     }
 
-    private List<Report> findAll() {
+    public List<Report> findAll() {
         return reportRepository.findAll();
     }
 
-    private void save(Report report) {
+    public void save(Report report) {
         reportRepository.save(report);
     }
 
-    private void delete(long id) {
+    public void delete(long id) {
         reportRepository.deleteById(id);
     }
-    private Report findReportByExperimentId(long experimentId) {
+    public Report findReportByExperimentId(long experimentId) {
         return reportRepository.findReportByExperimentId(experimentId);
     }
 }

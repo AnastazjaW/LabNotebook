@@ -22,7 +22,7 @@ public class Project {
 
     @Column
     @NotEmpty
-    @Size(min = 2)
+    @Size(min = 2, max = 260)
     private String name;
     @ManyToMany
     @JoinTable(name = "users_projects",
@@ -31,7 +31,7 @@ public class Project {
     private List<User> users;
     @Column
     @NotEmpty
-    @Size(min = 2)
+    @Size(min = 2, max = 1000)
     private String description;
     @Column(name = "start_date")
     private LocalDateTime startDate;

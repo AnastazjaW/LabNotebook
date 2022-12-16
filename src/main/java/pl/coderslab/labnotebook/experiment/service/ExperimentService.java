@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import pl.coderslab.labnotebook.experiment.entity.Experiment;
 import pl.coderslab.labnotebook.experiment.repository.ExperimentRepository;
+import pl.coderslab.labnotebook.protocol.entity.Protocol;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -36,6 +37,11 @@ public class ExperimentService {
     public void markExperimentAsFinished(long id) {
         Experiment experiment = experimentRepository.getById(id);
         experiment.setIsFinished((byte) 1);
+        save(experiment);
+    }
+    public void addProtocolToExperiment(long id, Protocol protocol) {
+        Experiment experiment = findById(id).get();
+        experiment.setProtocol(protocol);
         save(experiment);
     }
 }
