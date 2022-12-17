@@ -23,6 +23,10 @@
                             <td>${project.name}<br>
                                 Start date: ${project.startDate}<br>
                                 Finish date: ${project.finishDate}<br>
+                                Participants:
+                                <c:forEach items="${project.users}" var="user">
+                                    ${user.firstName} ${user.lastName}, ${user.degree}  (${user.affiliation});
+                                </c:forEach> <br>
                                 <c:choose>
                                     <c:when test="${empty project.finishDate}">
                                         <a href="<c:url value="${pageContext.request.contextPath}/project/finish/${project.id}"/>"
