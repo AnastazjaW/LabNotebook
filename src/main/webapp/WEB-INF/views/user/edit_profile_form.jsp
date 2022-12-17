@@ -12,7 +12,7 @@
 <div class="mt-4 d-flex flex-column">
   <div class="d-flex justify-content-center" style="font-size:25px;">My profile</div>
   <div class="mt-4 d-flex justify-content-center">
-    <form:form method="post" modelAttribute="userToEdit">
+    <form:form method="post" modelAttribute="authUser">
       First name: <form:input path="firstName"/><br>
       <form:errors path="firstName"/><br>
       Last name: <form:input path="lastName"/><br>
@@ -25,7 +25,7 @@
       Affiliation: <form:input path="affiliation"/><br>
       <form:errors path="affiliation"/><br>
       <input type="submit" class="btn btn-lg btn-primary" value="Save"/>
-      <a class="btn btn-lg btn-secondary" href="<c:url value="${pageContext.request.contextPath}/"/>">Cancel</a>
+      <a class="btn btn-lg btn-secondary" href="<c:url value="${pageContext.request.contextPath}/last_task"/>">Cancel</a>
     </form:form>
   </div>
 </div>

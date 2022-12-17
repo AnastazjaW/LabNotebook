@@ -33,10 +33,6 @@ public class UserController {
         return "register_form";
     }
 
-    @ModelAttribute("user")
-    public User findAuthenticatedUser() {
-        return userService.getAuthenticatedUser();
-    }
 
     @PostMapping("/register")
     public String registerUserAccount(@ModelAttribute("user") @Valid UserRegisterDTO user, BindingResult result) {
@@ -44,17 +40,21 @@ public class UserController {
             return "register_form";
         }
         userService.save(user);
-        return "redirect:/home";
+        return "redirect:/login";
+    }
+    @ModelAttribute("authUser")
+    public User findAuthenticatedUser() {
+        return userService.getAuthenticatedUser();
     }
 
     @GetMapping("profile")
     public String showEditProfileForm(Model model) {
-        model.addAttribute("userToEdit", userService.findById(userService.getAuthenticatedUserId()));
+//        model.addAttribute("userToEdit", userService.findById(userService.getAuthenticatedUserId()));
         return "user/edit_profile_form";
     }
 
     @PostMapping("/profile")
-    public String editProfile(@ModelAttribute("userToEdit") @Valid User user, BindingResult result) {
+    public String editProfile(@ModelAttribute("authUser") @Valid User user, BindingResult result) {
         if (result.hasErrors()) {
             return "user/edit_profile_form";
         }
