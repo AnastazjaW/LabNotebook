@@ -11,10 +11,10 @@
 <div class="mt-4 d-flex flex-column">
     <div class="d-flex justify-content-center" style="font-size:40px;">Choose protocol</div>
     <div class="mt-4 d-flex justify-content-center">
-<form:form method="post" modelAttribute="experimentToAddProtocol">
-    <form:select path="protocol" items="${protocols}" itemValue="id" itemLabel="name"/><br>
-    <input type="submit" class="btn btn-outline-primary btn-sm" value="Add protocol to experiment"/>
-</form:form>
+        <form:form method="post" modelAttribute="experimentToAddProtocol">
+            <form:select path="protocol" items="${protocols}" itemValue="id" itemLabel="name"/><br>
+            <input type="submit" class="btn btn-outline-primary btn-sm" value="Add protocol to experiment"/>
+        </form:form>
     </div>
 </div>
 </body>

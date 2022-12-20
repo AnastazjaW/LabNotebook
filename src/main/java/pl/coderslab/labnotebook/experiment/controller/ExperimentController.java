@@ -14,6 +14,7 @@ import pl.coderslab.labnotebook.protocol.service.ProtocolService;
 import pl.coderslab.labnotebook.report.service.ReportService;
 import pl.coderslab.labnotebook.tasks.entity.Task;
 import pl.coderslab.labnotebook.tasks.service.TaskService;
+import pl.coderslab.labnotebook.user.service.UserService;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -27,6 +28,7 @@ public class ExperimentController {
     private final ProjectService projectService;
     private final ProtocolService protocolService;
     private final ReportService reportService;
+    private final UserService userService;
 
     @ModelAttribute("project")
     public Project project(@ PathVariable long projectID) {
@@ -97,7 +99,7 @@ public class ExperimentController {
     @GetMapping("/experiment/{expId}/add_protocol")
     public String addProtocolToExperiment(@PathVariable long expId, Model model) {
         model.addAttribute("experimentToAddProtocol", experimentService.findById(expId).get());
-        model.addAttribute("protocols", protocolService.findAll());
+        model.addAttribute("protocols", protocolService.findProtocolsByUserIdSortedByLastModificationDate(userService.getAuthenticatedUserId()));
         return "experiment/add_protocol_to_experiment_form";
     }
 

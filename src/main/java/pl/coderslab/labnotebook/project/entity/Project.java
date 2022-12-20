@@ -29,7 +29,7 @@ public class Project {
     joinColumns = @JoinColumn(name = "project_id"),
             inverseJoinColumns = @JoinColumn(name = "user_id"))
     private List<User> users;
-    @Column
+    @Column(length = 1000)
     @NotEmpty
     @Size(min = 2, max = 1000)
     private String description;
